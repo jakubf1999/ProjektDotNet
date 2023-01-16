@@ -1,0 +1,28 @@
+﻿@model Projekt.Models.Account
+
+@{
+    ViewData["Title"] = "TakeReviews";
+}
+
+<h1>Reviews (Login: @Html.DisplayFor(model => model.Login))</h1>
+
+<form asp-action="SaveReviews" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+    <table class='table table-bordered table-hover'>
+                <thead>
+                    <th>Gra</th>
+                    <th>Ocena</th>
+                </thead>
+        @foreach (var r in ViewBag.scorelist)
+        {
+                    <tr>
+                        <td>@r.GameName </td>
+                        <td><input name="scorelist" class="form-control" value="@r.Score"/><input hidden name="gamelist" value="@r.GameId" /> </td>
+                    </tr>
+        }
+            </table>
+            <button asp-action="SaveReviews" class="btn btn-primary" >Save</button>
+    </div>
+</form>
+</table>
